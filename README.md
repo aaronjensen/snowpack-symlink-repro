@@ -1,25 +1,37 @@
-# New Project
+# Snowpack Symlink Repro
 
-> ✨ Bootstrapped with Create Snowpack App (CSA).
+## Repro
 
-## Available Scripts
+```
+yarn
+yarn build
+tree build/_dist_
+```
 
-### npm start
+### Actual
 
-Runs the app in the development mode.
-Open http://localhost:8080 to view it in the browser.
+```
+build/_dist_
+├── in-src.js
+├── link
+│   └── in-link.js
+└── no-link
+    ├── in-link.js
+    └── subdir
+        └── in-subdir.js
+```
 
-The page will reload if you make edits.
-You will also see any lint errors in the console.
+### Expected
 
-### npm run build
-
-Builds a static copy of your site to the `build/` folder.
-Your app is ready to be deployed!
-
-**For the best production performance:** Add a build bundler plugin like "@snowpack/plugin-webpack" to your `snowpack.config.js` config file.
-
-### npm test
-
-Launches the application test runner.
-Run with the `--watch` flag (`npm test -- --watch`) to run in interactive watch mode.
+```
+build/_dist_
+├── in-src.js
+├── link
+│   ├── in-link.js
+│   └── subdir
+│       └── in-subdir.js
+└── no-link
+    ├── in-link.js
+    └── subdir
+        └── in-subdir.js
+```
